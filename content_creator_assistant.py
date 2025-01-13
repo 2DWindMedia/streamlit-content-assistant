@@ -1,3 +1,5 @@
+import os  # Thư viện tiêu chuẩn
+from dotenv import load_dotenv  # Thư viện dotenv
 import openai
 import requests
 from bs4 import BeautifulSoup
@@ -5,8 +7,11 @@ from pytrends.request import TrendReq
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
-# Cấu hình API Key của bạn
-openai.api_key = "YOUR_API_KEY_HERE"  # Thay bằng API key thực tế của bạn
+# Tải biến môi trường từ file .env
+load_dotenv()
+
+# Cấu hình API Key từ biến môi trường
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Đọc API Key từ tệp .env
 
 # Hàm 1: Tạo ý tưởng video ngắn
 def generate_idea(trend, target_audience, platform):
